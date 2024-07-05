@@ -52,4 +52,8 @@ export class TasksComponent {
     console.log('Task added:');
     this.isAddingTask = true;
   }
+
+  onCancelAddingTask() {
+    this.isAddingTask = false;
+  }
 }
