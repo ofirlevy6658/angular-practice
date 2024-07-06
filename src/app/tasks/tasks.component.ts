@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { TaskComponent } from '../task/task.component';
 import { NewTaskComponent } from './new-task/new-task.component';
+import { NewTaskData } from '../task/task.model';
 const dummyTasks = [
   {
     id: 't1',
@@ -48,12 +49,22 @@ export class TasksComponent {
     this.tasks = this.tasks.filter((task) => task.id !== taskId);
   }
 
-  onAddTask() {
-    console.log('Task added:');
+  onStartAddTask() {
     this.isAddingTask = true;
   }
 
   onCancelAddingTask() {
     this.isAddingTask = false;
+  }
+
+  onAddTask(taskData: NewTaskData) {
+    this.isAddingTask = false;
+    this.tasks.push({
+      id: Math.random().toString(),
+      userId: this.userId!,
+      title: taskData.title,
+      summary: taskData.summary,
+      dueDate: taskData.date,
+    });
   }
 }
